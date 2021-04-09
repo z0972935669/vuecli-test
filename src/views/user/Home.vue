@@ -1,4 +1,95 @@
-
+<template>
+  <div class="home">
+    <div class="banner">
+      <router-link to="shop/protective">
+        <img :src="banner" alt="健人嚴選" />
+      </router-link>
+      <div class="info">
+        <div>
+          <p>凱力健人嚴選Kaiz</p>
+          <p class="py-2">致力於打造最好的健身產品</p>
+          <router-link to="/discount">點擊領取優惠序號</router-link>
+        </div>
+      </div>
+      <span class="nextStep" @click.prevent="nextStepFn">
+        <i class="fa fa-angle-double-down" aria-hidden="true"></i>
+      </span>
+    </div>
+    <div class="row event01">
+      <div class="box1 col-12 col-md-6">
+        <div class="fadein">
+          <p class="h3">Kaiz Quality</p>
+          <p class="font-weight-bold py-4 my-md-4">凱力品管保證</p>
+          <p>凱力於商品生產過程時，便有超過國家安全標準的多項安全把關，對所有商品都出貨前皆會進行尺寸、瑕疵抽樣檢驗，為的就是讓喜愛我們品牌的忠實粉絲們能夠拿到完美零瑕疵的商品，也歡迎所有收到商品瑕疵的客人像凱力回報，凱力將無條件全額補償退費。</p>
+        </div>
+      </div>
+      <div class="box2 col-12 col-md-6 p-0">
+        <div class="grid1">
+          <router-link to="/shop/protective">
+            <img class="p-0" :src="e1Img01" alt />
+          </router-link>
+        </div>
+        <div class="grid2">
+          <router-link to="/shop/protective">
+            <img class="p-0" :src="e1Img02" alt />
+          </router-link>
+        </div>
+        <div class="grid3">
+          <router-link to="/shop/whey">
+            <img class="p-0" :src="e1Img03" alt />
+          </router-link>
+        </div>
+        <div class="grid4">
+          <router-link to="/shop/whey">
+            <img class="p-0" :src="e1Img04" alt />
+          </router-link>
+        </div>
+      </div>
+    </div>
+    <div class="row event02 m-0">
+      <div class="box1 col-12 col-md-6 p-0">
+        <router-link to="/shop/whey">
+          <img class="p-0" :src="e2" alt />
+        </router-link>
+      </div>
+      <div class="box2 col-12 col-md-6">
+        <div class="fadein">
+          <p class="h3">Kaiz Protein</p>
+          <p class="font-weight-bold py-4 my-md-4">凱力高蛋白</p>
+          <p>凱力高蛋白，蛋白質含量適中，且含有多種其他營養素，即使沒有進行重訓，平時也可當作代餐食用，讓身體在節食過程中維持正常代謝。凱力專為亞洲人體質量身打造運動補給品。完全不含大豆蛋白並且經過「減乳糖加工程序」，再加上木瓜酵素幫助身體消化蛋白質，有助減少脹氣機率。除了蛋白質之外成分中還含有維生素A、D、E與B群，提供均衡的營養攝取。</p>
+        </div>
+      </div>
+    </div>
+    <div class="row event03 p-0 m-0">
+      <div class="scroll col-12 p-0">
+        <div class="col-12 col-md-6 info fadein right">
+          <p class="h3 font-weight-bold">Kaiz Words</p>
+          <p class="py-4 my-md-4 font-weight-bold">凱力理念</p>
+          <p
+            class="my-md-4"
+          >隨著健身產業的新興，全民的健身意識抬頭，到健身房報到已經成了不少人每天的必須行程，凱力健人嚴選致力於提供運動夥伴們最優質的健身護具，及品質最高的乳清蛋白，讓運動夥伴們可以專心訓練，由凱力做最強大的後盾與你們一同成長。</p>
+          <p>KaizBB.2020</p>
+        </div>
+      </div>
+    </div>
+    <div class="event04">
+      <p align="center" class="h3 pb-4">LATEST ARTICLES</p>
+      <swiper :options="swiperOption" class="swiper">
+        <swiper-slide class="box" v-for="(slide,index) in swiperNum" :key="index">
+          <router-link to="/news">
+            <div class="bgImg" :style="{backgroundImage:`url(${slide.img})`}"></div>
+            <div class="info">
+              <p class="font-weight-bold h5">{{slide.title}}</p>
+              <p>{{slide.main}}</p>
+            </div>
+          </router-link>
+        </swiper-slide>
+        <div class="swiper-button-prev swiper-button-white" slot="button-prev"></div>
+        <div class="swiper-button-next swiper-button-white" slot="button-next"></div>
+      </swiper>
+    </div>
+  </div>
+</template>
 
 <script>
 import $ from 'jquery'
