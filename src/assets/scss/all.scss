@@ -1,0 +1,8 @@
+// 載入套用變數的方法
+@import "~bootstrap/scss/functions";
+@import "./helpers/_variables";
+@import "./helpers/_dashboard.scss";
+// 載入bootstrap(node_modules下的bs.scss)
+@import "~bootstrap/scss/bootstrap";
+// user頁面css
+@import "./user.scss";

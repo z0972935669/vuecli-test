@@ -1,0 +1,61 @@
+@mixin desktop {
+  @media (max-width: 1024px) {
+    @content;
+  }
+}
+@mixin lg {
+  @media (max-width: 991px) {
+    @content;
+  }
+}
+@mixin md {
+  @media (max-width: 767px) {
+    @content;
+  }
+}
+@mixin pad {
+  @media (max-width: 768px) {
+    @content;
+  }
+}
+@mixin mobile {
+  @media (max-width: 480px) {
+    @content;
+  }
+}
+@mixin iphoneX {
+  @media (max-width: 375px) {
+    @content;
+  }
+}
+@mixin iphone5 {
+  @media (max-width: 320px) {
+    @content;
+  }
+}
+
+$color-red: #ee4143;
+$color-darkRed: #8d3742;
+$color-pink: #ffac9a;
+$color-navyBlue: #4b4b65;
+$color-green: #0d423e;
+$color-lightYellow: #faead1;
+$color-gray: #d4d4d4;
+$color-darkGray: #313131;
+$color-black: #141414;
+$color-white: #fff;
+$color-bg: #fff;
+$color-bgActive: rgba(0, 0, 0, 0.4);
+
+@mixin a-text {
+  text-decoration: none;
+}
+@mixin fontStyle {
+  font-family: "\5FAE\8EDF\6B63\9ED1\9AD4", "Microsoft JhengHei", "Segoe UI Semibold", "Segoe UI", "Lucida Grande",
+    Verdana, Arial, Helvetica, sans-serif;
+}
+@mixin focusNone {
+  &:focus {
+    outline: none;
+  }
+}

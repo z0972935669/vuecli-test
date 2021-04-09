@@ -1,0 +1,320 @@
+@import "./helpers/breakpoint.scss";
+@import "./helpers/font.scss";
+
+/* Reset */
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+blockquote,
+q {
+  quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+body {
+  -webkit-text-size-adjust: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  font-family: "微軟正黑體", "Microsoft JhengHei", "Segoe UI Semibold", "Segoe UI", "Lucida Grande", Verdana, Arial,
+    Helvetica, sans-serif;
+}
+button {
+  margin: 0;
+  padding: 0;
+  border: 1px solid transparent;
+  outline: none;
+  background: transparent;
+  :focus {
+    border: 0;
+  }
+}
+/*main*/
+body {
+  background: $color-bg;
+}
+.pt150 {
+  padding-top: 150px !important;
+  @include pad() {
+    padding-top: 100px !important;
+  }
+}
+.pt100 {
+  padding-top: 100px !important;
+  @include pad() {
+    padding-top: 75px !important;
+  }
+}
+.pointer {
+  cursor: pointer !important;
+}
+.mobNone {
+  @include mobile() {
+    display: none;
+  }
+}
+/*fadein*/
+.fadein,
+.fadein2,
+.fadein3 {
+  opacity: 0;
+  transition: all 1.5s;
+}
+.fadeinDelay {
+  opacity: 0;
+  transition: all 2s;
+  transition-delay: 0.8s;
+}
+.up {
+  transform: translateY(20%);
+}
+.down {
+  transform: translateY(-20%);
+}
+.left {
+  transform: translateX(10%);
+}
+.right {
+  transform: translateX(-10%);
+}
+.fadein.active,
+.fadein2.active,
+.fadeinDelay.active {
+  opacity: 1;
+  transform: translateX(0%);
+  transform: translateY(0%);
+}
+
+.bgActive {
+  transition: 0.4s;
+  background-color: $color-bgActive;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 0;
+  z-index: 510;
+  .title {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: inline-block;
+    color: $color-gray;
+    font-size: 2rem;
+    letter-spacing: 1rem;
+    text-align: center;
+    font-family: "Helvetica", "Arial", "LiHei Pro", "黑體-繁", "微軟正黑體", sans-serif;
+    filter: blur(1px);
+  }
+}
+.main {
+  // position: relative;
+  box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.4);
+  width: 100%;
+  @include lg() {
+  }
+  @include mobile() {
+    margin-bottom: 3rem;
+    box-shadow: none;
+  }
+  @include pad() {
+  }
+  & > div:nth-child(1) {
+    @include mobile() {
+      padding: 0;
+    }
+  }
+  .sale {
+    border: 1px solid #28a745;
+    &::before {
+      border-right: 1px solid #28a745;
+      @include mobile() {
+        border: 0;
+      }
+    }
+  }
+  .goCheckOut {
+    width: 100%;
+    background: $color-darkRed;
+    color: #fff;
+    display: block;
+    padding: 5% 0;
+    transition: 0.4s;
+    &:hover {
+      opacity: 0.7;
+    }
+  }
+  .coupons {
+    border-top: 8px dotted #00000038;
+    margin-top: 2rem;
+    padding-top: 1rem;
+    .barcode {
+      text-align: center;
+      img {
+        height: 60px;
+        width: 100%;
+        @include pad() {
+          height: 100px;
+        }
+        @include mobile() {
+          height: 80px;
+        }
+      }
+    }
+    .couponsInfo {
+      margin: 0.5rem auto 0 auto;
+      border-bottom: 1px solid black;
+      border-width: 80%;
+      input:nth-child(1) {
+        border: 0;
+        background: transparent;
+        padding: 0;
+        &:focus {
+          outline: none;
+        }
+      }
+      .applyCoupons {
+        padding: 0;
+        font-size: 1.5rem;
+        transition: 0.6s;
+        &:focus {
+          outline: none;
+        }
+        &:hover {
+          transform: translateX(10px);
+        }
+      }
+    }
+    .couponCode {
+      letter-spacing: 5px;
+    }
+  }
+}
