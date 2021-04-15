@@ -1,24 +1,30 @@
 <template>
   <div>
     <loading :active.sync="isLoading"></loading>
-    <header class="header" :class="{'bgTransparent':menuBgFn}">
+    <header class="header" :class="{ bgTransparent: menuBgFn }">
       <div class="inner">
         <router-link to="/home" class="logo" alt="首頁">
-          <h1>Kai ZBB</h1>
+          <h1>RUN</h1>
         </router-link>
         <nav class="nav">
           <button
             @click.prevent="goShop"
-            :class="{'menuActive':isMenuActive === '商品列表',menuActiveFn}"
-          >商品列表</button>
+            :class="{ menuActive: isMenuActive === '商品列表', menuActiveFn }"
+          >
+            商品列表
+          </button>
           <button
             @click.prevent="goDiscount"
-            :class="{'menuActive':isMenuActive === '優惠活動',menuActiveFn}"
-          >優惠活動</button>
+            :class="{ menuActive: isMenuActive === '優惠活動', menuActiveFn }"
+          >
+            優惠活動
+          </button>
           <button
             @click.prevent="goNews"
-            :class="{'menuActive':isMenuActive === '健康資訊',menuActiveFn}"
-          >健康資訊</button>
+            :class="{ menuActive: isMenuActive === '健康資訊', menuActiveFn }"
+          >
+            健康資訊
+          </button>
           <router-link to="/login" tag="button">會員登入</router-link>
         </nav>
         <button class="mobNavIcan" @click.prevent="isMobNav = !isMobNav">
@@ -26,28 +32,35 @@
         </button>
       </div>
     </header>
-    <div :class="{'zindex':!bagToggle}">
-      <div :class="{'bagBg':bagToggle === false}" @click="bagToggleFn"></div>
+    <div :class="{ zindex: !bagToggle }">
+      <div :class="{ bagBg: bagToggle === false }" @click="bagToggleFn"></div>
       <a class="headerBag" @click="bagToggleFn(false)">
-        <i :class="{'iconActive':!bagToggle}" class="fa fa-shopping-cart"></i>
+        <i :class="{ iconActive: !bagToggle }" class="fa fa-shopping-cart"></i>
         <span v-if="cart.carts.length >= 1">{{ cart.carts.length }}</span>
       </a>
-      <div class="headerBagInfo" :class="{'bagActive':bagToggle}">
+      <div class="headerBagInfo" :class="{ bagActive: bagToggle }">
         <div class="bagBgActive"></div>
-        <div class="text-center mb-3" v-if="cart.carts.length < 1">您的購物車是空的</div>
+        <div class="text-center mb-3" v-if="cart.carts.length < 1">
+          您的購物車是空的
+        </div>
         <div v-if="cart.carts">
           <div class="bagItem" v-for="item in cart.carts" :key="item.id">
             <div v-if="item.product">
               <img :src="item.product.imageUrl" width="50" />
               <div>
-                <div class="cartItemDelete" @click.prevent="cartItemDelete(item)">
+                <div
+                  class="cartItemDelete"
+                  @click.prevent="cartItemDelete(item)"
+                >
                   <i class="fa fa-times"></i>
                 </div>
-                <p>{{item.product.title}}</p>
+                <p>{{ item.product.title }}</p>
                 <span class="d-block">
-                  <p>{{item.size}}</p>
-                  <p>x{{item.qty}}</p>
-                  <p>{{item.product.price | currency }}/{{item.product.unit}}</p>
+                  <p>{{ item.size }}</p>
+                  <p>x{{ item.qty }}</p>
+                  <p>
+                    {{ item.product.price | currency }}/{{ item.product.unit }}
+                  </p>
                 </span>
               </div>
             </div>
@@ -56,16 +69,24 @@
         <div class="bagPrice">
           <div v-if="cart.carts.length >= 1">
             <p class="d-inline-block">NTD.</p>
-            <p class="d-inline-block">{{cart.total | currency }}</p>
+            <p class="d-inline-block">{{ cart.total | currency }}</p>
           </div>
-          <button class="d-block" @click.prevent="goCheckProduct" v-if="cart.carts.length < 1">前往去購物</button>
-          <button class="d-block" @click.prevent="goCheckProduct" v-else>查看購物車</button>
+          <button
+            class="d-block"
+            @click.prevent="goCheckProduct"
+            v-if="cart.carts.length < 1"
+          >
+            前往去購物
+          </button>
+          <button class="d-block" @click.prevent="goCheckProduct" v-else>
+            查看購物車
+          </button>
         </div>
       </div>
     </div>
-    <div :class="{'zindex':isSearch}">
+    <div :class="{ zindex: isSearch }">
       <label for="inSearch" @click="isSearch = !isSearch" class="headerSearch">
-        <i :class="{'iconActive':isSearch}" class="fa fa-search"></i>
+        <i :class="{ iconActive: isSearch }" class="fa fa-search"></i>
       </label>
       <div class="search" v-if="isSearch">
         <input
@@ -79,10 +100,13 @@
           <i class="fa fa-search"></i>
         </button>
       </div>
-      <div :class="{'bgActive':isSearch,}" @click.prevent="isSearch = !isSearch"></div>
+      <div
+        :class="{ bgActive: isSearch }"
+        @click.prevent="isSearch = !isSearch"
+      ></div>
     </div>
-    <div :class="{'navMobBg':isMobNav,}" @click.prevent="mobNavFn"></div>
-    <nav class="navMob" :class="{'active':isMobNav}">
+    <div :class="{ navMobBg: isMobNav }" @click.prevent="mobNavFn"></div>
+    <nav class="navMob" :class="{ active: isMobNav }">
       <div class="logo">
         <span>KizZ BB</span>
         <span></span>
@@ -90,16 +114,22 @@
       <div class="menuButton">
         <button
           @click.prevent="goShop"
-          :class="{'menuActive':isMenuActive === '商品列表',menuActiveFn}"
-        >商品列表</button>
+          :class="{ menuActive: isMenuActive === '商品列表', menuActiveFn }"
+        >
+          商品列表
+        </button>
         <button
           @click.prevent="goDiscount"
-          :class="{'menuActive':isMenuActive === '優惠活動',menuActiveFn}"
-        >優惠活動</button>
+          :class="{ menuActive: isMenuActive === '優惠活動', menuActiveFn }"
+        >
+          優惠活動
+        </button>
         <button
           @click.prevent="goNews"
-          :class="{'menuActive':isMenuActive === '健康資訊',menuActiveFn}"
-        >健康資訊</button>
+          :class="{ menuActive: isMenuActive === '健康資訊', menuActiveFn }"
+        >
+          健康資訊
+        </button>
         <router-link to="/login" tag="button">會員登入</router-link>
         <button>其他</button>
       </div>
@@ -116,105 +146,105 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex'
+import { mapGetters, mapActions } from "vuex";
 
 export default {
-  name: 'UserNavbar',
-  data () {
+  name: "UserNavbar",
+  data() {
     return {
       isMobNav: false,
       isAnimateOut: false,
       isCheckOut: false,
       isSearch: false,
-      isMenuActive: '',
-      isMenuActiveMob: '',
-      id: ''
-    }
+      isMenuActive: "",
+      isMenuActiveMob: "",
+      id: "",
+    };
   },
   methods: {
-    ...mapActions(['bagToggleFn', 'cartItemDelete']),
-    ...mapActions('cartsModules', ['getCart']),
-    goShop () {
-      const vm = this
-      const path = '/shop/all'
-      vm.$route.path !== path && vm.$router.push(path)
-      vm.isMobNav = false
+    ...mapActions(["bagToggleFn", "cartItemDelete"]),
+    ...mapActions("cartsModules", ["getCart"]),
+    goShop() {
+      const vm = this;
+      const path = "/shop/all";
+      vm.$route.path !== path && vm.$router.push(path);
+      vm.isMobNav = false;
     },
-    goDiscount () {
-      const vm = this
-      const path = '/discount'
-      vm.$route.path !== path && vm.$router.push(path)
-      vm.isMobNav = false
+    goDiscount() {
+      const vm = this;
+      const path = "/discount";
+      vm.$route.path !== path && vm.$router.push(path);
+      vm.isMobNav = false;
     },
-    goNews () {
-      const vm = this
-      const path = '/News'
-      vm.$route.path !== path && vm.$router.push(path)
-      vm.isMobNav = false
+    goNews() {
+      const vm = this;
+      const path = "/News";
+      vm.$route.path !== path && vm.$router.push(path);
+      vm.isMobNav = false;
     },
-    mobNavFn () {
-      const vm = this
-      vm.isMobNav = false
+    mobNavFn() {
+      const vm = this;
+      vm.isMobNav = false;
     },
-    goProducts () {
+    goProducts() {
       // 搜尋商品頁
-      const vm = this
-      const path = `/search/${vm.id}`
-      vm.$bus.$emit('searchId:push', vm.id)
-      vm.$route.path !== path && vm.$router.push(path)
-      vm.isSearch = false
+      const vm = this;
+      const path = `/search/${vm.id}`;
+      vm.$bus.$emit("searchId:push", vm.id);
+      vm.$route.path !== path && vm.$router.push(path);
+      vm.isSearch = false;
     },
-    goCheckProduct (context) {
-      const vm = this
+    goCheckProduct(context) {
+      const vm = this;
       if (vm.$store.state.cartsModules.cart.carts.length >= 1) {
-        vm.$store.dispatch('bagToggleFn', true)
+        vm.$store.dispatch("bagToggleFn", true);
         vm.$router.push({
-          path: '/checkProduct'
-        })
+          path: "/checkProduct",
+        });
       } else {
-        vm.$store.dispatch('bagToggleFn', true)
-        this.goShop()
+        vm.$store.dispatch("bagToggleFn", true);
+        this.goShop();
       }
-    }
+    },
   },
   computed: {
-    ...mapGetters(['isbagToggleFn', 'bagToggle', 'isLoading']),
-    ...mapGetters('cartsModules', ['cart']),
-    menuActiveFn () {
-      const vm = this
-      const routeName = vm.$route.name
+    ...mapGetters(["isbagToggleFn", "bagToggle", "isLoading"]),
+    ...mapGetters("cartsModules", ["cart"]),
+    menuActiveFn() {
+      const vm = this;
+      const routeName = vm.$route.name;
       if (
-        routeName === 'All' ||
-        routeName === 'Protective' ||
-        routeName === 'Whey' ||
-        routeName === 'Like' ||
-        routeName === 'ShopSearch' ||
-        routeName === 'ShopInside'
+        routeName === "All" ||
+        routeName === "Protective" ||
+        routeName === "Whey" ||
+        routeName === "Like" ||
+        routeName === "ShopSearch" ||
+        routeName === "ShopInside"
       ) {
-        return (vm.isMenuActive = '商品列表')
-      } else if (routeName === 'Discount' || routeName === 'Turn') {
-        return (vm.isMenuActive = '優惠活動')
-      } else if (routeName === 'News') {
-        return (vm.isMenuActive = '健康資訊')
+        return (vm.isMenuActive = "商品列表");
+      } else if (routeName === "Discount" || routeName === "Turn") {
+        return (vm.isMenuActive = "優惠活動");
+      } else if (routeName === "News") {
+        return (vm.isMenuActive = "健康資訊");
       } else {
-        return (vm.isMenuActive = '')
+        return (vm.isMenuActive = "");
       }
     },
-    menuBgFn () {
-      const vm = this
-      const routeName = vm.$route.name
-      if (routeName === 'Home') {
-        return true
+    menuBgFn() {
+      const vm = this;
+      const routeName = vm.$route.name;
+      if (routeName === "Home") {
+        return true;
       } else {
-        return false
+        return false;
       }
-    }
+    },
   },
-  created () {
-    const vm = this
-    vm.getCart()
-  }
-}
+  created() {
+    const vm = this;
+    vm.getCart();
+  },
+};
 </script>
 
 <style lang="scss">

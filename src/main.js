@@ -12,8 +12,7 @@ import VueI18n from 'vue-i18n'
 import 'bootstrap'
 import 'font-awesome/css/font-awesome.css'
 import VueAwesomeSwiper from 'vue-awesome-swiper'
-import Swiper from 'swiper';
-import 'swiper/swiper-bundle.css';
+import 'swiper/swiper-bundle.css'
 import 'eslint-loader/index'
 
 import './bus'

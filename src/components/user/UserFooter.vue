@@ -2,17 +2,17 @@
   <footer class="footer">
     <div class="info row">
       <div class="contact col-sm">
-        <span>凱力位置</span>
+        <span>RUNNING MAP</span>
         <div class="map"></div>
       </div>
       <div class="about col-sm py-sm-0 py-3">
-        <span>關於凱力</span>
+        <span>ABOUT RUN</span>
         <div>
-          <p>凱力健人嚴選致力於打造最優質的健身護具，及品質最高的乳清蛋白，讓運動夥伴們可以專心訓練，由凱力做最強的後盾。 </p>
+          <p>女則教洋也。阿見先市起書歌別空故時，運以臺準再引少不電？笑團時。常靈展深期應能王為親型的看性觀市成校似的後一動大更是微是：角如能洋明口是富有年須運：飛今無如展的及節間速人然死同親化來用是個相所！ </p>
         </div>
       </div>
       <div class="follow col-sm-3 p-sm">
-        <span>追蹤凱力</span>
+        <span>FOLLOW RUN</span>
         <div>
           <a href="https://twitter.com/?lang=zh-tw">
             <i class="fa fa-twitter-square"></i>Twitter
@@ -27,7 +27,7 @@
       </div>
     </div>
     <div class="copyright text-center">
-      <font style="vertical-align: inherit;">©Kaiz.BB【僅當練習作品無商業用途】</font>
+      <font style="vertical-align: inherit;">©RUN【僅當練習作品無商業用途】</font>
     </div>
   </footer>
 </template>
@@ -40,8 +40,8 @@ export default {
     return {
       map: null,
       // 預設經緯度在信義區附近
-      lat: 25.063891,
-      lng: 121.642334
+      lat: 25.12006543567774,
+      lng: 121.5202242996045
     }
   },
   methods: {

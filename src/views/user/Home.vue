@@ -6,8 +6,8 @@
       </router-link>
       <div class="info">
         <div>
-          <p>凱力健人嚴選Kaiz</p>
-          <p class="py-2">致力於打造最好的健身產品</p>
+          <p>RUNNING MAN</p>
+          <p class="py-2">運以臺準再引少不電？</p>
           <router-link to="/discount">點擊領取優惠序號</router-link>
         </div>
       </div>
@@ -18,9 +18,13 @@
     <div class="row event01">
       <div class="box1 col-12 col-md-6">
         <div class="fadein">
-          <p class="h3">Kaiz Quality</p>
-          <p class="font-weight-bold py-4 my-md-4">凱力品管保證</p>
-          <p>凱力於商品生產過程時，便有超過國家安全標準的多項安全把關，對所有商品都出貨前皆會進行尺寸、瑕疵抽樣檢驗，為的就是讓喜愛我們品牌的忠實粉絲們能夠拿到完美零瑕疵的商品，也歡迎所有收到商品瑕疵的客人像凱力回報，凱力將無條件全額補償退費。</p>
+          <p class="h3">RUNNING</p>
+          <p class="font-weight-bold py-4 my-md-4">
+            師營社遊至照長電紅點每主把
+          </p>
+          <p>
+            該飛至功以你無著其在等年裡來書讀為想化在留動月。向至公魚出陸聽不就世遊種足三。設常成就使士院球自的是信至影出對官物電力口：界濟部有的字的多過兒我西來。
+          </p>
         </div>
       </div>
       <div class="box2 col-12 col-md-6 p-0">
@@ -54,61 +58,78 @@
       </div>
       <div class="box2 col-12 col-md-6">
         <div class="fadein">
-          <p class="h3">Kaiz Protein</p>
-          <p class="font-weight-bold py-4 my-md-4">凱力高蛋白</p>
-          <p>凱力高蛋白，蛋白質含量適中，且含有多種其他營養素，即使沒有進行重訓，平時也可當作代餐食用，讓身體在節食過程中維持正常代謝。凱力專為亞洲人體質量身打造運動補給品。完全不含大豆蛋白並且經過「減乳糖加工程序」，再加上木瓜酵素幫助身體消化蛋白質，有助減少脹氣機率。除了蛋白質之外成分中還含有維生素A、D、E與B群，提供均衡的營養攝取。</p>
+          <p class="h3">RUNNING</p>
+          <p class="font-weight-bold py-4 my-md-4">親告一這我</p>
+          <p>
+            熱們總。一新陽次亞五去主是民把？不不目就作亮當古的似、向學減人花親名對正，照兩起是文，海海叫。
+            一頭聲市的算做境給我了好親策一母去哥朋是生香這有實學吸？結靈聽念性果清重！灣愛苦害；總乎定關地它坐平而然語你我舉學計！地到業性專笑；年會有年失料待夫是不在如回了節細師當我文。
+          </p>
         </div>
       </div>
     </div>
     <div class="row event03 p-0 m-0">
       <div class="scroll col-12 p-0">
         <div class="col-12 col-md-6 info fadein right">
-          <p class="h3 font-weight-bold">Kaiz Words</p>
-          <p class="py-4 my-md-4 font-weight-bold">凱力理念</p>
-          <p
-            class="my-md-4"
-          >隨著健身產業的新興，全民的健身意識抬頭，到健身房報到已經成了不少人每天的必須行程，凱力健人嚴選致力於提供運動夥伴們最優質的健身護具，及品質最高的乳清蛋白，讓運動夥伴們可以專心訓練，由凱力做最強大的後盾與你們一同成長。</p>
-          <p>KaizBB.2020</p>
+          <p class="h3 font-weight-bold">RUNNING</p>
+          <p class="py-4 my-md-4 font-weight-bold">
+            沒了有一力講路發手二先作安
+          </p>
+          <p class="my-md-4">
+            樣子片情供物研孩現前了得類家象；不把求育深野年在：華不過未父樂與創共配防有？能收的受候一花沒構使如中風關農書。友不單多團人提一了著們說的交女們在自我二市望再系關問東子今生少作出對爸標心葉以健行最下此維紅樂真裝的黃。
+          </p>
+          <p>RUN BERRY, RUN</p>
         </div>
       </div>
     </div>
     <div class="event04">
-      <p align="center" class="h3 pb-4">LATEST ARTICLES</p>
+      <p align="center" class="h3 pb-4">RUNNING NEWS</p>
       <swiper :options="swiperOption" class="swiper">
-        <swiper-slide class="box" v-for="(slide,index) in swiperNum" :key="index">
+        <swiper-slide
+          class="box"
+          v-for="(slide, index) in swiperNum"
+          :key="index"
+        >
           <router-link to="/news">
-            <div class="bgImg" :style="{backgroundImage:`url(${slide.img})`}"></div>
+            <div
+              class="bgImg"
+              :style="{ backgroundImage: `url(${slide.img})` }"
+            ></div>
             <div class="info">
-              <p class="font-weight-bold h5">{{slide.title}}</p>
-              <p>{{slide.main}}</p>
+              <p class="font-weight-bold h5">{{ slide.title }}</p>
+              <p>{{ slide.main }}</p>
             </div>
           </router-link>
         </swiper-slide>
-        <div class="swiper-button-prev swiper-button-white" slot="button-prev"></div>
-        <div class="swiper-button-next swiper-button-white" slot="button-next"></div>
+        <div
+          class="swiper-button-prev swiper-button-white"
+          slot="button-prev"
+        ></div>
+        <div
+          class="swiper-button-next swiper-button-white"
+          slot="button-next"
+        ></div>
       </swiper>
     </div>
   </div>
 </template>
 
 <script>
-import $ from 'jquery'
-import Swiper from 'swiper';
-import 'swiper/swiper-bundle.css';
-import banner from '@/assets/images/index/banner.jpg'
-import e1Img01 from '@/assets/images/index/e1-1.jpg'
-import e1Img02 from '@/assets/images/index/e1-2.jpg'
-import e1Img03 from '@/assets/images/index/e1-3.jpg'
-import e1Img04 from '@/assets/images/index/e1-4.jpg'
-import e2 from '@/assets/images/index/e2.jpg'
-import e4Img01 from '@/assets/images/news/01.jpg'
-import e4Img02 from '@/assets/images/news/02.jpg'
-import e4Img03 from '@/assets/images/news/03.jpg'
-import e4Img04 from '@/assets/images/news/04.jpg'
-import e4Img05 from '@/assets/images/news/05.jpg'
+import $ from "jquery";
+import "swiper/swiper-bundle.css";
+import banner from "@/assets/images/index/banner.jpg";
+import e1Img01 from "@/assets/images/index/e1-1.jpg";
+import e1Img02 from "@/assets/images/index/e1-2.jpg";
+import e1Img03 from "@/assets/images/index/e1-3.jpg";
+import e1Img04 from "@/assets/images/index/e1-4.jpg";
+import e2 from "@/assets/images/index/e2.jpg";
+import e4Img01 from "@/assets/images/news/01.jpg";
+import e4Img02 from "@/assets/images/news/02.jpg";
+import e4Img03 from "@/assets/images/news/03.jpg";
+import e4Img04 from "@/assets/images/news/04.jpg";
+import e4Img05 from "@/assets/images/news/05.jpg";
 
 export default {
-  data () {
+  data() {
     return {
       banner,
       e1Img01,
@@ -119,84 +140,85 @@ export default {
       swiperNum: [
         {
           img: e4Img01,
-          title: '健身飲食篇',
+          title: "健身飲食篇",
           main:
-            '不管你是要減重、增肌或是為了健康,運動後的30分鐘到1小時內,聰明攝取一份,運動後補充一份均衡營養的輕食很重要,內容以碳水化合物與蛋白質的'
+            "不管你是要減重、增肌或是為了健康,運動後的30分鐘到1小時內,聰明攝取一份,運動後補充一份均衡營養的輕食很重要,內容以碳水化合物與蛋白質的",
         },
         {
           img: e4Img02,
-          title: '有氧運動迷失',
+          title: "有氧運動迷失",
           main:
-            '提到有氧運動,相信許多人都會想到減肥（減重）,因為有氧運動的確是可以,健身之前要先了解什麼是核心肌'
+            "提到有氧運動,相信許多人都會想到減肥（減重）,因為有氧運動的確是可以,健身之前要先了解什麼是核心肌",
         },
         {
           img: e4Img03,
-          title: '適合老人的運動有哪些？',
+          title: "適合老人的運動有哪些？",
           main:
-            '所謂要活就要動,老了也別忘記運動。適合老人的運動類型有3種,包含可提升心肺功能的有氧運動、可強化骨頭和肌肉的肌力訓練,及幫助保'
+            "所謂要活就要動,老了也別忘記運動。適合老人的運動類型有3種,包含可提升心肺功能的有氧運動、可強化骨頭和肌肉的肌力訓練,及幫助保",
         },
         {
           img: e4Img04,
-          title: '吃蛋白棒前要搞清楚的5件事情',
+          title: "吃蛋白棒前要搞清楚的5件事情",
           main:
-            '隨著食品加工業的發展,以及人們對營養食品需求的增進,熱愛健康的人群已經不再滿足於簡單的多種維生素以及乳清蛋白粉產品。各類蛋白'
+            "隨著食品加工業的發展,以及人們對營養食品需求的增進,熱愛健康的人群已經不再滿足於簡單的多種維生素以及乳清蛋白粉產品。各類蛋白",
         },
         {
           img: e4Img05,
-          title: '第一次健身就上手',
+          title: "第一次健身就上手",
           main:
-            '下一站,我們即將帶領大家走入健身房,提供獨家的「攻略要點」,協助「健身房新手」不再像無頭蒼蠅於健身房裡亂竄'
-        }
+            "下一站,我們即將帶領大家走入健身房,提供獨家的「攻略要點」,協助「健身房新手」不再像無頭蒼蠅於健身房裡亂竄",
+        },
       ],
       // 螢幕寬度
       screenWidth: document.documentElement.clientWidth,
       swiperOption: {
         loop: true,
         loopFillGroupWithBlank: true,
-        autoplay: true,
+        autoplay: false,
         navigation: {
-          nextEl: '.swiper-button-next',
-          prevEl: '.swiper-button-prev'
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
         },
         breakpoints: {
           768: {
-            slidesPerView: 2
+            slidesPerView: 2,
           },
           480: {
-            slidesPerView: 1
-          }
+            slidesPerView: 1,
+          },
         },
         slidesPerView: 3,
         spaceBetween: 10,
         slidesPerGroup: 1,
         observer: true,
-        observeParents: true
-      }
-    }
+        observeParents: true,
+      },
+      
+    };
   },
   methods: {
-    nextStepFn () {
-      $('html, body').animate(
+    nextStepFn() {
+      $("html, body").animate(
         {
-          scrollTop: $('.event01').offset().top
+          scrollTop: $(".event01").offset().top,
         },
         1000
-      )
-    }
+      );
+    },
   },
   computed: {
-    swiperFn () {
-      const vm = this
+    swiperFn() {
+      const vm = this;
       if (vm.screenWidth >= 769) {
-        vm.swiperOption.slidesPerView = 3
-        return vm.swiperNum
+        vm.swiperOption.slidesPerView = 3;
+        return vm.swiperNum;
       } else {
-        vm.swiperOption.slidesPerView = 1
-        return vm.swiperNum
+        vm.swiperOption.slidesPerView = 1;
+        return vm.swiperNum;
       }
-    }
-  }
-}
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>
@@ -493,16 +515,16 @@ export default {
       color: white;
       text-align: center;
       overflow: hidden;
-      padding:0 100px;
+      padding: 0 100px;
       @include desktop() {
-        padding:0 50px;
+        padding: 0 50px;
       }
       @include md() {
         height: 50%;
-        padding:0 100px;
+        padding: 0 100px;
       }
       @include mobile() {
-        padding:0 40px;
+        padding: 0 40px;
       }
       & > p:nth-child(1) {
         margin-top: 10rem;
@@ -513,10 +535,10 @@ export default {
           margin-top: 5rem;
         }
         @include md() {
-           margin-top: 7rem;
+          margin-top: 7rem;
         }
         @include mobile() {
-           margin-top: 2.5rem;
+          margin-top: 2.5rem;
         }
       }
       & > p:nth-child(3) {
@@ -535,7 +557,7 @@ export default {
         padding-top: 2rem;
         font-family: "Dancing Script";
         font-weight: bold;
-        font-size: .8rem;
+        font-size: 0.8rem;
         text-align: right;
         @include iphoneX {
           padding-top: 1rem;

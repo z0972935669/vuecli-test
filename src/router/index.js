@@ -169,7 +169,11 @@ const routes = [
   }
 ]
 
+// http://localhost:8080/home/#
+// mode: 'history': 變更路由，把#消除
+// URL: https://stackoverflow.com/questions/57913630/vuejs-routing-automatically-sets-a-in-url
 const router = new VueRouter({
+  mode: 'history',
   routes
 })
 // 解除路由報錯
