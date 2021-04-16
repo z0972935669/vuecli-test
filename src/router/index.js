@@ -172,8 +172,9 @@ const routes = [
 // http://localhost:8080/home/#
 // mode: 'history': 變更路由，把#消除
 // URL: https://stackoverflow.com/questions/57913630/vuejs-routing-automatically-sets-a-in-url
+// history: 在沒有記錄的情況下，就會報錯，如:id
 const router = new VueRouter({
-  mode: 'history',
+  // mode: 'history',
   routes
 })
 // 解除路由報錯

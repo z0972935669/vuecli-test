@@ -3,70 +3,100 @@
     <loading :active.sync="isLoading"></loading>
     <div class="row container m-auto">
       <div class="menuList col-md">
-        <button @click.prevent="getAll()" :class="{'listActive':isMenuActive === '全部商品'}">全部商品</button>
+        <button
+          @click.prevent="getAll()"
+          :class="{ listActive: isMenuActive === '全部商品' }"
+        >
+          全部商品
+        </button>
         <button
           @click.prevent="getProtective()"
-          :class="{'listActive':isMenuActive === '健身護具'}"
-        >健身護具</button>
-        <button @click.prevent="getWhey()" :class="{'listActive':isMenuActive === '優質乳清'}">優質乳清</button>
-        <button @click.prevent="getLike()" :class="{'listActive':isMenuActive === '最愛商品'}">最愛商品</button>
+          :class="{ listActive: isMenuActive === '健身護具' }"
+        >
+          健身護具
+        </button>
+        <button
+          @click.prevent="getWhey()"
+          :class="{ listActive: isMenuActive === '優質乳清' }"
+        >
+          優質乳清
+        </button>
+        <button
+          @click.prevent="getLike()"
+          :class="{ listActive: isMenuActive === '最愛商品' }"
+        >
+          最愛商品
+        </button>
       </div>
       <div class="menuMain col-md-10">
         <div class="menuBar row col-11 mx-0 mb-4 p-0">
           <div
             class="box1 p-0 col-4"
             @click.prevent="getAll()"
-            :class="{'active':isMenuActive === '全部商品'}"
+            :class="{ active: isMenuActive === '全部商品' }"
           >
             <p>全部商品</p>
           </div>
           <div
             class="box2 p-0 col-4"
             @click.prevent="getProtective()"
-            :class="{'active':isMenuActive === '健身護具'}"
+            :class="{ active: isMenuActive === '健身護具' }"
           >
             <p>健身護具</p>
           </div>
           <div
             class="box3 p-0 col-4"
             @click.prevent="getWhey()"
-            :class="{'active':isMenuActive === '優質乳清'}"
+            :class="{ active: isMenuActive === '優質乳清' }"
           >
             <p>優質乳清</p>
           </div>
           <div
             class="box4 p-0 col-4"
             @click.prevent="getLike()"
-            :class="{'active':isMenuActive === '最愛商品'}"
+            :class="{ active: isMenuActive === '最愛商品' }"
           >
             <p>最愛商品</p>
           </div>
         </div>
-        <div class="subcate mb-3">{{isMenuActive}}</div>
+        <div class="subcate mb-3">{{ isMenuActive }}</div>
         <div class="row">
           <div
             class="col-6 col-md-4 col-lg-3 mb-4"
-            v-for="(item,key) in filteredProducts"
+            v-for="(item, key) in filteredProducts"
             :key="key"
           >
             <div v-if="item.is_enabled === 1">
-              <div class="border-0 shadow-sm shop_info" @click.prevent="goInside(item.id)">
+              <div
+                class="border-0 shadow-sm shop_info"
+                @click.prevent="goInside(item.id)"
+              >
                 <span
                   class="sale_style"
-                  :class="{'soldOutStyle':item.in_stock === 0}"
+                  :class="{ soldOutStyle: item.in_stock === 0 }"
                   v-if="item.origin_price != 0"
-                >SALE</span>
+                  >SALE</span
+                >
                 <img
                   :src="item.imageUrl"
-                  :class="{'soldOutStyle':item.in_stock === 0}"
+                  :class="{ soldOutStyle: item.in_stock === 0 }"
                   :alt="item.title"
                 />
               </div>
               <div class="item_info" @click.prevent="goInside(item.id)">
-                <p class="pdname" :class="{'soldOutStyle':item.in_stock === 0}">{{item.title}}</p>
-                <p class="price" :class="{'soldOutStyle':item.in_stock === 0}">
-                  <span :class="{'saleFont':item.origin_price != 0}">{{item.price | currency}}</span>
-                  <span class="old" v-if="item.origin_price != 0">{{item.origin_price | currency}}</span>
+                <p
+                  class="pdname"
+                  :class="{ soldOutStyle: item.in_stock === 0 }"
+                >
+                  {{ item.title }}
+                </p>
+                <p class="price" :class="{ soldOutStyle: item.in_stock === 0 }">
+                  <span :class="{ saleFont: item.origin_price != 0 }">{{
+                    item.price | currency
+                  }}</span>
+                  <span class="old" v-if="item.origin_price != 0">{{
+                    item.origin_price | currency
+                  }}</span>
                 </p>
                 <span class="like">
                   <i
@@ -74,7 +104,11 @@
                     @click.stop="removeLike(item)"
                     v-if="getFilterLocalData(item)"
                   ></i>
-                  <i class="fa fa-heart-o" @click.stop="addLike(item)" v-else></i>
+                  <i
+                    class="fa fa-heart-o"
+                    @click.stop="addLike(item)"
+                    v-else
+                  ></i>
                 </span>
               </div>
               <div class="soldOut" v-if="item.in_stock === 0">
@@ -89,134 +123,128 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex'
+import { mapGetters, mapActions } from "vuex";
 
 export default {
-  data () {
+  data() {
     return {
       isLike: false,
-      isMenuActive: '全部商品',
-      searchId: '',
-      likeData: []
-    }
+      isMenuActive: "全部商品",
+      searchId: "",
+      likeData: [],
+    };
   },
   methods: {
-    ...mapActions(['getProducts']),
-    getAll () {
-      const vm = this
-      const path = '/shop/all'
+    ...mapActions(["getProducts"]),
+    getAll() {
+      const vm = this;
+      const path = "/shop/all";
       // 避免重複點擊時報錯
-      vm.$route.path !== path && vm.$router.push(path)
+      vm.$route.path !== path && vm.$router.push(path);
     },
-    getProtective () {
-      const vm = this
-      const path = '/shop/protective'
-      vm.$route.path !== path && vm.$router.push(path)
+    getProtective() {
+      const vm = this;
+      const path = "/shop/protective";
+      vm.$route.path !== path && vm.$router.push(path);
     },
-    getWhey () {
-      const vm = this
-      const path = '/shop/whey'
-      vm.$route.path !== path && vm.$router.push(path)
+    getWhey() {
+      const vm = this;
+      const path = "/shop/whey";
+      vm.$route.path !== path && vm.$router.push(path);
     },
-    getLike () {
-      const vm = this
-      const path = '/shop/like'
-      vm.$route.path !== path && vm.$router.push(path)
+    getLike() {
+      const vm = this;
+      const path = "/shop/like";
+      vm.$route.path !== path && vm.$router.push(path);
     },
-    goInside (id) {
-      const vm = this
-      vm.$router.push(`/shop_inside/${id}`)
+    goInside(id) {
+      const vm = this;
+      vm.$router.push(`/shop_inside/${id}`);
       window.scrollTo({
         top: 0,
-        behavior: 'smooth'
-      })
+        behavior: "smooth",
+      });
     },
-    getLocalData () {
-      const vm = this
-      vm.likeData = JSON.parse(localStorage.getItem('likeData')) || []
+    getLocalData() {
+      const vm = this;
+      vm.likeData = JSON.parse(localStorage.getItem("likeData")) || [];
     },
-    getFilterLocalData (item) {
-      const vm = this
+    getFilterLocalData(item) {
+      const vm = this;
       return vm.likeData.some(function (ele) {
-        return item.id === ele.id
-      })
+        return item.id === ele.id;
+      });
     },
-    addLike (item) {
-      const vm = this
+    addLike(item) {
+      const vm = this;
       const likeArr = {
         title: item.title,
-        id: item.id
-      }
-      vm.likeData.push(likeArr)
-      localStorage.setItem(
-        'likeData',
-        JSON.stringify(vm.likeData)
-      )
+        id: item.id,
+      };
+      vm.likeData.push(likeArr);
+      localStorage.setItem("likeData", JSON.stringify(vm.likeData));
     },
-    removeLike (item) {
-      const vm = this
+    removeLike(item) {
+      const vm = this;
       const num = vm.likeData.findIndex(function (ele) {
-        return ele.id === item.id
-      })
-      vm.likeData.splice(num, 1)
+        return ele.id === item.id;
+      });
+      vm.likeData.splice(num, 1);
       // 更新localstrage資料
-      localStorage.setItem(
-        'likeData',
-        JSON.stringify(vm.likeData)
-      )
-    }
+      localStorage.setItem("likeData", JSON.stringify(vm.likeData));
+    },
   },
   computed: {
-    ...mapGetters(['isLoading', 'products']),
-    filteredProducts () {
-      const vm = this
-      const routeName = vm.$route.name
-      let filtered = ''
+    ...mapGetters(["isLoading", "products"]),
+    filteredProducts() {
+      const vm = this;
+      const routeName = vm.$route.name;
+      let filtered = "";
       // 判斷網頁顯示內容
       switch (routeName) {
-        case 'All':
-          vm.isMenuActive = '全部商品'
-          return vm.products
-        case 'Protective':
-          vm.isMenuActive = '健身護具'
+        case "All":
+          vm.isMenuActive = "全部商品";
+          return vm.products;
+        case "Protective":
+          vm.isMenuActive = "健身護具";
           filtered = vm.products.filter(function (item) {
-            return item.category === '護具'
-          })
-          return filtered
-        case 'Whey':
-          vm.isMenuActive = '優質乳清'
+            return item.category === "護具";
+          });
+          return filtered;
+        case "Whey":
+          vm.isMenuActive = "優質乳清";
           filtered = vm.products.filter(function (item) {
-            return item.category === '乳清'
-          })
-          return filtered
-        case 'Like':
-          vm.isMenuActive = '最愛商品'
+            return item.category === "乳清";
+          });
+          return filtered;
+        case "Like":
+          vm.isMenuActive = "最愛商品";
           filtered = vm.products.filter(function (item, index, arr) {
             return vm.likeData.some(function (ele) {
-              return item.id === ele.id
-            })
-          })
-          return filtered
+              return item.id === ele.id;
+            });
+          });
+          return filtered;
         default:
           // 搜尋
           filtered = vm.products.filter(function (item) {
-            return item.title.includes(vm.searchId)
-          })
-          vm.isMenuActive = `查詢有關"${vm.searchId}"的結果`
-          return filtered
+            return item.title.includes(vm.searchId);
+          });
+          vm.isMenuActive = `查詢有關"${vm.searchId}"的結果`;
+          return filtered;
       }
-    }
+    },
   },
-  created () {
-    const vm = this
-    vm.searchId = vm.$route.params.id
-    vm.getProducts()
-    vm.getLocalData()
-    vm.$bus.$on('searchId:push', value => {
-      vm.searchId = value
-    })
-  }
-}
+  created() {
+    const vm = this;
+    vm.searchId = vm.$route.params.id;
+    vm.getProducts();
+    vm.getLocalData();
+    vm.$bus.$on("searchId:push", (value) => {
+      vm.searchId = value;
+    });
+  },
+};
 </script>
 
 <style lang="scss" scoped>
