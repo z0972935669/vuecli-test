@@ -4,9 +4,11 @@
     <div>
       <div>
         <ul class="navColumn">
-          <router-link tag="li" to="/shop" class="title pointer">商品列表</router-link>
-          <li @click="back" class="title pointer">{{product.category}}</li>
-          <li class="title">{{product.title}}</li>
+          <router-link tag="li" to="/shop" class="title pointer">
+            商品列表
+          </router-link>
+          <li @click="back" class="title pointer">{{ product.category }}</li>
+          <li class="title">{{ product.title }}</li>
         </ul>
       </div>
       <div class="row mb-5 mt-4 align-items-center">
@@ -18,18 +20,21 @@
               @click.stop="removeLike(product)"
               v-if="getFilterLocalData(product)"
             ></i>
-            <i class="fa fa-heart-o text-dark" @click.stop="addLike(product)" v-else></i>
+            <i
+              class="fa fa-heart-o text-dark"
+              @click.stop="addLike(product)"
+              v-else
+            ></i>
           </span>
         </div>
         <div class="shopInside_info col-md-6 col-xl-4">
           <div>
-            <h2 class="h2 mb-3 mt-xl-0">{{product.title}}</h2>
-            <!-- <div class="mb-3">商品存貨:</div> -->
+            <h2 class="h2 mb-3 mt-xl-0">{{ product.title }}</h2>
             <span>購買數量:</span>
             <div class="row">
               <div class="addSize mt-2 col-6">
                 <select
-                  :class="{'borderErr':isSize}"
+                  :class="{ borderErr: isSize }"
                   class="form-control"
                   id="tasteValue"
                   @change.prevent="tasteValue"
@@ -42,7 +47,7 @@
                   <option value="香草">香草</option>
                 </select>
                 <select
-                  :class="{'borderErr':isSize}"
+                  :class="{ borderErr: isSize }"
                   class="form-control"
                   id="protectiveValue"
                   @change.prevent="protectiveValue"
@@ -55,30 +60,46 @@
                 </select>
               </div>
               <div class="addNumber mt-2 col-6">
-                <select name class="form-control" id="cartNum" @change.prevent="cartNumFn">
-                  <option :value="num" v-for="num in 10" :key="num.id">{{num}}</option>
+                <select
+                  class="form-control"
+                  id="cartNum"
+                  @change.prevent="cartNumFn"
+                >
+                  <option :value="num" v-for="num in 10" :key="num.id">
+                    {{ num }}
+                  </option>
                 </select>
               </div>
             </div>
-            <p class="h3 pt-2 pb-2 mb-4">NT.{{product.price}}</p>
+            <p class="h3 pt-2 pb-2 mb-4">NT.{{ product.price }}</p>
           </div>
-          <div class="text-danger text-center" v-if="product.in_stock === 0">商品已售完</div>
+          <div class="text-danger text-center" v-if="product.in_stock === 0">
+            商品已售完
+          </div>
           <div class="addShop text-center" v-else>
-            <button class="col-5" @click.prevent="addtoCart(product)">加入購物車</button>
+            <button class="col-5" @click.prevent="addtoCart(product)">
+              加入購物車
+            </button>
             <span class="col"></span>
-            <button class="col-5" @click.prevent="buyNow(product)" to="/shop/all">直接購買</button>
+            <button
+              class="col-5"
+              @click.prevent="buyNow(product)"
+              to="/shop/all"
+            >
+              直接購買
+            </button>
           </div>
           <h6 class="h5 pt-4">商品描述:</h6>
           <ul class="ml-2">
-            <li class="productWrite mb-3">{{product.description}}</li>
+            <li class="productWrite mb-3">{{ product.description }}</li>
           </ul>
           <h6 class="h5 mb-3">商品資訊:</h6>
           <ul class="ml-2">
             <li class="mb-3">實品顏色依照片為主</li>
             <li class="mb-3">厚薄:適中</li>
             <li class="mb-3">彈性:佳</li>
-            <li class="mb-3">素材產地 / 中國</li>
-            <li class="mb-3">加工產地 / 中國</li>
+            <li class="mb-3">素材產地 / 法國</li>
+            <li class="mb-3">加工產地 / 美國</li>
           </ul>
         </div>
       </div>
@@ -87,11 +108,15 @@
           <span>MORE LOOK</span>
         </h2>
         <div class="info row">
-          <div class="col-6 col-lg-3 mt-4" v-for="(item,key) in moreLook" :key="key">
+          <div
+            class="col-6 col-lg-3 mt-4"
+            v-for="(item, key) in moreLook"
+            :key="key"
+          >
             <div @click.prevent="goPath(item.id)">
-              <img :src="item.imageUrl" alt />
-              <p class="text-left py-2">{{item.title}}</p>
-              <p class="text-left">NT.{{item.price}}</p>
+              <img :src="item.imageUrl" alt="" />
+              <p class="text-left py-2">{{ item.title }}</p>
+              <p class="text-left">NT.{{ item.price }}</p>
             </div>
           </div>
         </div>
@@ -101,173 +126,183 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex'
-import axios from 'axios'
+import { mapGetters, mapActions } from "vuex";
+import axios from "axios";
 
 export default {
-  data () {
+  data() {
     return {
       isSize: false,
-      itemId: '',
+      itemId: "",
       // 全部商品
-      products: '',
+      products: "",
       // 單筆商品
-      product: '',
+      product: "",
       moreLook: [],
-      likeData: []
-    }
+      likeData: [],
+    };
   },
   methods: {
-    ...mapActions('cartsModules', ['cartNumFn', 'addtoCart']),
-    getProduct (id) {
+    ...mapActions("cartsModules", ["cartNumFn", "addToCart"]),
+    getProduct(id) {
       // 取得指定商品資料
-      const vm = this
-      const url = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/products/all`
-      vm.$store.dispatch('updateLoading', true)
-      vm.$http.get(url).then(response => {
+      const vm = this;
+      const url = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/products/all`;
+      vm.$store.dispatch("updateLoading", true);
+      vm.$http.get(url).then((response) => {
         const newArray = response.data.products.filter(function (
           item,
           index,
           arr
         ) {
           if (item.id !== id) {
-            return item
+            return item;
           }
-        })
-        vm.products = newArray
+        });
+        vm.products = newArray;
         for (let i = 0; i < 4; i++) {
           // 隨機顯示物件中的商品
-          const num = Math.floor(Math.random() * vm.products.length)
+          const num = Math.floor(Math.random() * vm.products.length);
           // 將隨機的商品新增到新物件
-          vm.moreLook.push(vm.products[num])
-          // 新增後刪除該筆資料位置,避免重複
-          vm.products.splice(num, 1)
+          vm.moreLook.push(vm.products[num]);
+          // 新增後刪除該筆資料位置，避免重複
+          vm.products.splice(num, 1);
         }
-      })
-      const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/product/${id}`
-      vm.$http.get(api).then(response => {
-        vm.product = response.data.product
-        vm.$store.dispatch('updateLoading', false)
-      })
+      });
+      const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/product/${id}`;
+      vm.$http.get(api).then((response) => {
+        vm.product = response.data.product;
+        vm.$store.dispatch("updateLoading", false);
+      });
     },
-    goPath (id) {
-      // 透過id到指定內頁
-      const vm = this
-      vm.$router.push({ path: `/shop_inside/${id}` })
-      location.reload()
+    goPath(id) {
+      const vm = this;
+      vm.$router.push({ path: `/shop_inside/${id}` });
+      location.reload();
     },
-    back (e) {
-      const vm = this
-      if (vm.product.category === '護具') {
-        vm.$router.push({ path: '/shop/protective' })
-      } else if (vm.product.category === '乳清') {
-        vm.$router.push({ path: '/shop/whey' })
+    back(e) {
+      const vm = this;
+      if (vm.product.category === "護具") {
+        vm.$router.push({ path: "/shop/protective" });
+      } else if (vm.product.category === "乳清") {
+        vm.$router.push({ path: "/shop/whey" });
       }
     },
-    tasteValue () {
+    tasteValue() {
       // 選擇口味
-      const vm = this
-      vm.$store.state.cartsModules.size = document.getElementById('tasteValue').value
-      vm.isSize = false
+      const vm = this;
+      vm.$store.state.cartsModules.size = document.getElementById(
+        "tasteValue"
+      ).value;
+      vm.isSize = false;
     },
-    protectiveValue () {
+    protectiveValue() {
       // 選擇尺寸
-      const vm = this
-      vm.$store.state.cartsModules.size = document.getElementById('protectiveValue').value
-      vm.isSize = false
+      const vm = this;
+      vm.$store.state.cartsModules.size = document.getElementById(
+        "protectiveValue"
+      ).value;
+      vm.isSize = false;
     },
-    buyNow (product) {
-      const vm = this
-      const addAPI = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/cart`
-      vm.$store.dispatch('updateLoading', false)
-      if (vm.$store.state.cartsModules.size === undefined || vm.$store.state.cartsModules.size === 'undefined') {
-        alert('請選擇尺寸/口味')
-        vm.isSize = true
+    buyNow(product) {
+      const vm = this;
+      const addAPI = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/cart`;
+      vm.$store.dispatch("updateLoading", false);
+      if (
+        vm.$store.state.cartsModules.size === undefined ||
+        vm.$store.state.cartsModules.size === "undefined"
+      ) {
+        alert("請選擇尺寸/口味");
+        vm.isSize = true;
       } else {
-        const { carts } = vm.$store.state.cartsModules.cart
-        if (carts.some(item => item.product.title === product.title && item.size === vm.$store.state.cartsModules.size)) {
-          let deletId = String
-          let currentQty = Number
-          carts.map(item => {
-            if (item.product.title === product.title && item.size === vm.$store.state.cartsModules.size) {
+        const { carts } = vm.$store.state.cartsModules.cart;
+        if (
+          carts.some(
+            (item) =>
+              item.product.title === product.title &&
+              item.size === vm.$store.state.cartsModules.size
+          )
+        ) {
+          let deletId = String;
+          let currentQty = Number;
+          carts.map((item) => {
+            if (
+              item.product.title === product.title &&
+              item.size === vm.$store.state.cartsModules.size
+            ) {
               // 取得當前的qty做累加
-              currentQty = item.qty
+              currentQty = item.qty;
               // 取得外層刪除ID值
-              deletId = item.id
+              deletId = item.id;
             }
-          })
+          });
           const cart = {
             product_id: product.id,
             qty: vm.$store.state.cartsModules.cartNum + currentQty,
-            size: vm.$store.state.cartsModules.size
-          }
-          const delAPI = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/cart/${deletId}`
-          axios.all([axios.delete(delAPI), axios.post(addAPI, { data: cart })])
-            .then(res => {
-            // 直接購買,導頁並更新購物車
-              vm.$store.dispatch('cartsModules/getCart')
-            })
+            size: vm.$store.state.cartsModules.size,
+          };
+          const delAPI = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/cart/${deletId}`;
+          axios
+            .all([axios.delete(delAPI), axios.post(addAPI, { data: cart })])
+            .then((res) => {
+              // 直接購買，導頁並更新購物車
+              vm.$store.dispatch("cartsModules/getCart");
+            });
         } else {
           const cart = {
             product_id: product.id,
             qty: vm.$store.state.cartsModules.cartNum,
-            size: vm.$store.state.cartsModules.size
-          }
-          vm.$http.post(addAPI, { data: cart }).then(response => {
-            // 直接購買,導頁並更新購物車
-            vm.$store.dispatch('cartsModules/getCart')
-          })
+            size: vm.$store.state.cartsModules.size,
+          };
+          vm.$http.post(addAPI, { data: cart }).then((response) => {
+            // 直接購買，導頁並更新購物車
+            vm.$store.dispatch("cartsModules/getCart");
+          });
         }
-        vm.$router.push('/checkProduct')
-        vm.$store.dispatch('updateLoading', true)
+        vm.$router.push("/checkProduct");
+        vm.$store.dispatch("updateLoading", true);
       }
     },
-    getLocalData () {
-      const vm = this
-      vm.likeData = JSON.parse(localStorage.getItem('likeData')) || []
+    getLocalData() {
+      const vm = this;
+      vm.likeData = JSON.parse(localStorage.getItem("likeData")) || [];
     },
-    getFilterLocalData (item) {
-      const vm = this
+    getFilterLocalData(item) {
+      const vm = this;
       return vm.likeData.some(function (ele) {
-        return item.id === ele.id
-      })
+        return (item.id = ele.id);
+      });
     },
-    addLike (item) {
-      const vm = this
+    addLike(item) {
+      const vm = this;
       const likeArr = {
         title: item.title,
-        id: item.id
-      }
-      vm.likeData.push(likeArr)
-      localStorage.setItem(
-        'likeData',
-        JSON.stringify(vm.likeData)
-      )
+        id: item.id,
+      };
+      vm.likeData.push(likeArr);
+      localStorage.setItem("likeData", JSON.Stringify(vm.likeData));
     },
-    removeLike (item) {
-      const vm = this
-      const num = vm.likeData.findIndex(ele => {
-        return ele.title === item.title
-      })
-      vm.likeData.splice(num, 1)
-      localStorage.setItem(
-        'likeData',
-        JSON.stringify(vm.likeData)
-      )
-    }
+    removeLike(item) {
+      const vm = this;
+      const num = vm.likeData.findIndex((ele) => {
+        return ele.title === item.title;
+      });
+      vm.likeData.splice(num, 1);
+      localStorage.setItem("likeData", JSON.stringify(vm.likeData));
+    },
   },
   computed: {
-    ...mapGetters(['isLoading']),
-    ...mapGetters('cartsModules', ['size'])
+    ...mapGetters(["isLoading"]),
+    ...mapGetters("cartsModules", ["size"]),
   },
-  created () {
-    const vm = this
-    vm.itemId = vm.$route.params.itemId
-    // 將指定商品id帶入
-    vm.getProduct(vm.itemId)
-    vm.getLocalData()
-  }
-}
+  created() {
+    const vm = this;
+    vm.itemId = vm.$route.params.itemId;
+    // 將指定商品ID帶入
+    vm.getProduct(vm.itemId);
+    vm.getLocalData();
+  },
+};
 </script>
 
 <style lang="scss" scoped>

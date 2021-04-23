@@ -75,8 +75,9 @@
                   class="sale_style"
                   :class="{ soldOutStyle: item.in_stock === 0 }"
                   v-if="item.origin_price != 0"
-                  >SALE</span
                 >
+                  SALE
+                </span>
                 <img
                   :src="item.imageUrl"
                   :class="{ soldOutStyle: item.in_stock === 0 }"
@@ -91,12 +92,12 @@
                   {{ item.title }}
                 </p>
                 <p class="price" :class="{ soldOutStyle: item.in_stock === 0 }">
-                  <span :class="{ saleFont: item.origin_price != 0 }">{{
-                    item.price | currency
-                  }}</span>
-                  <span class="old" v-if="item.origin_price != 0">{{
-                    item.origin_price | currency
-                  }}</span>
+                  <span :class="{ saleFont: item.origin_price != 0 }">
+                    {{ item.price | currency }}
+                  </span>
+                  <span class="old" v-if="item.origin_price != 0">
+                    {{ item.origin_price | currency }}
+                  </span>
                 </p>
                 <span class="like">
                   <i
@@ -139,7 +140,6 @@ export default {
     getAll() {
       const vm = this;
       const path = "/shop/all";
-      // 避免重複點擊時報錯
       vm.$route.path !== path && vm.$router.push(path);
     },
     getProtective() {
@@ -172,7 +172,7 @@ export default {
     getFilterLocalData(item) {
       const vm = this;
       return vm.likeData.some(function (ele) {
-        return item.id === ele.id;
+        return ele.id === item.id;
       });
     },
     addLike(item) {
@@ -190,7 +190,6 @@ export default {
         return ele.id === item.id;
       });
       vm.likeData.splice(num, 1);
-      // 更新localstrage資料
       localStorage.setItem("likeData", JSON.stringify(vm.likeData));
     },
   },

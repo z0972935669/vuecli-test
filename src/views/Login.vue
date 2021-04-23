@@ -1,7 +1,7 @@
 <template>
   <div class="login">
     <form class="form-signin" @submit.prevent="signin">
-      <h1 class="h3 mb-3 font-weight-normal">KaizBB會員登入</h1>
+      <h1 class="h3 mb-3 font-weight-normal">RUN會員登入</h1>
       <label for="inputEmail" class="sr-only">Email address</label>
       <input
         type="email"
@@ -21,7 +21,7 @@
         required
         v-model="user.password"
       />
-      <div class="checkbox mb-3 text-danger">{{isMessage}}</div>
+      <div class="checkbox mb-3 text-danger">{{ isMessage }}</div>
       <button class="btn-lg btn-block" type="submit">登入</button>
       <button class="goBack" @click.prevent="goBack">回上一頁</button>
       <p class="my-3 text-muted">&copy; 2017-2019</p>
@@ -31,33 +31,32 @@
 
 <script>
 export default {
-  data () {
+  data() {
     return {
-      isMessage: '',
+      isMessage: "",
       user: {
-        username: '',
-        password: ''
-      }
-    }
+        username: "",
+        password: "",
+      },
+    };
   },
   methods: {
-    signin () {
-      const api = `${process.env.VUE_APP_APIPATH}/admin/signin`
-      const vm = this
-      vm.$http.post(api, vm.user).then(response => {
-        vm.isMessage = response.data.message
+    signin() {
+      const api = `${process.env.VUE_APP_APIPATH}/admin/signin`;
+      const vm = this;
+      vm.$http.post(api, vm.user).then((response) => {
         if (response.data.success) {
-          // 帳號登入成功時(true),將路由導致首頁
-          vm.$router.push('admin/Products')
+          // 帳號登入成功時(true), 將路由導至首頁
+          vm.$router.push("admin/Products");
         }
-      })
+      });
     },
-    goBack () {
-      const vm = this
-      vm.$router.go(-1)
-    }
-  }
-}
+    goBack() {
+      const vm = this;
+      vm.$router.go(-1);
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>
